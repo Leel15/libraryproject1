@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tables Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+<div id="main-layout" class="tables-page">
+    
+    <table class="fruit-table">
+    <caption>Table 1: Table <br> of Fruits and <br> Their Prices</caption>
+
+        <thead>
+            <tr>
+                <th>Fruit</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Apple</td><td>$0.25</td></tr>
+            <tr><td>Orange</td><td>$0.50</td></tr>
+            <tr><td>Banana</td><td>$1.00</td></tr>
+            <tr><td>Pineapple</td><td>$2.00</td></tr>
+            <tr style="font-weight: bold;">
+                <td>Total</td>
+                <td>$3.75</td>
+            </tr>
+        </tbody>
+    </table>
+
+   
+<table class="camelid-table">
+    <caption>Table 2: A more complex sample table</caption>
+        <tr>
+            <td rowspan="2" class="image-cell">
+                <img src="{% static 'desert.png' %}" alt="Desert">
+            </td>
+            <th colspan="4" class="main-header">
+                Camelid comparison<br>
+                Approximate as of 6/2011
+            </th>
+        </tr>
+        <tr class="sub-header">
+            <th># of humps</th>
+            <th>Indigenous region</th>
+            <th>Spits?</th>
+            <th>Produces wool?</th>
+        </tr>
+        <tr>
+            <th>Dromedary</th>
+            <td>1</td>
+            <td>Arabian Peninsula</td>
+            <td>Yes</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <th>Camels (bactrian)</th>
+            <td>2</td>
+            <td>Africa/Asia</td>
+            <td>Yes</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <th>Llamas</th>
+            <td>1</td>
+            <td>Andes Mountains</td>
+            <td>Yes</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

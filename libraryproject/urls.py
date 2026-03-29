@@ -16,17 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin 
 from django.urls import include, path 
-import apps.bookmodule.views 
 
 urlpatterns = [ 
 path('admin/', admin.site.urls), 
-#task1
-#path('', apps.bookmodule.views.index),
-
-#task 3
-#path('index2/<int:val1>/', apps.bookmodule.views.index2) 
-
-#task 6
 path('books/', include("apps.bookmodule.urls")), #include urls.py of bookmodule app 
 path('users/', include("apps.usermodule.urls"))  #include urls.py of usermodule app 
 ]
