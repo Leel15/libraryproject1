@@ -1,12 +1,11 @@
 {% extends "layouts/base.html" %}
 
 {% block content %}
-<h1 style = "background-color: black;">Search Results</h1>
+<h1 style = "background-color: gray; color: aliceblue;">Search Results</h1>
 
-{% for book in books %}
-  <h3>{{ book.title }}</h3>
-  <p>{{ book.author }}</p>
-  <hr>
+{% for obj in books %}
+ID: {{obj.id}}, Title: {{obj.title}}
+<hr>
 {% empty %}
   <p>No results found</p>
 {% endfor %}

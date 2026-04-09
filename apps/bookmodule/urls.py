@@ -10,6 +10,8 @@ path('html5/links/', views.links, name="books.links"),
 path('html5/text/formatting/', views.formatting, name="books.formatting"),
 path('html5/listing/', views.listing, name="books.listing"),
 path('html5/tables/', views.tables, name="books.tables"),
-path('search/',views.search)
+path('search/',views.search),
+path('simple/query',views.simple_query),
+path('complex/query',views.lookup_query)
 
 ] 
