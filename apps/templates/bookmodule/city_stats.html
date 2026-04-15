@@ -1,0 +1,23 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 20px auto; padding: 20px;">
+    <h1 style="text-align: center; color: #2c3e50; margin-bottom: 30px;">Students Count per City</h1>
+    
+    <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
+        {% for city in cities %}
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #f0f0f0;">
+            <div style="display: flex; align-items: center;">
+                <div style="width: 10px; height: 10px; background: #3498db; border-radius: 50%; margin-right: 15px;"></div>
+                <span style="font-size: 1.1em; font-weight: 500; color: #34495e;">{{ city.city }}</span>
+            </div>
+            <span style="background: #3498db; color: white; padding: 4px 15px; border-radius: 20px; font-size: 0.9em; font-weight: bold;">
+                {{ city.student_count }} Students
+            </span>
+        </div>
+        {% empty %}
+        <p style="padding: 20px; text-align: center; color: #bdc3c7;">No data available.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
