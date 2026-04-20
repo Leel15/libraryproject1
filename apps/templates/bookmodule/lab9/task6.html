@@ -1,0 +1,13 @@
+<h3>Task 6: Specific Books Count (Price > 50 & 1 <= Qty < 5)</h3>
+<table border="1">
+    <tr>
+        <th>Publisher Name</th>
+        <th>Count of Matches</th>
+    </tr>
+    {% for pub in publishers %}
+    <tr>
+        <td>{{ pub.name }}</td>
+        <td>{{ pub.specific_books_count }}</td>
+    </tr>
+    {% endfor %}
+</table>

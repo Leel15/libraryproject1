@@ -1,0 +1,23 @@
+<h3>Task 5: Count of Highly Rated Books (Rating >= 4)</h3>
+<ul>
+    {% for pub in publishers %}
+    <li>
+        <strong>{{ pub.name }}</strong> has <b>{{ pub.high_rated_count }}</b> high-rated books.
+        
+        {% if pub.high_rated_count > 0 %}
+        <ul>
+            {% for book in pub.book_set.all %}
+                {% if book.rating >= 4 %}
+                    <li>
+                        Title: <i>{{ book.title }}</i> - 
+                        Rating: <span style="color: green;">{{ book.rating }}⭐</span>                     </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        {% else %}
+            <p style="color: gray; font-size: 0.9em;">(No highly rated books for this publisher)</p>
+        {% endif %}
+        <hr>
+    </li>
+    {% endfor %}
+</ul>

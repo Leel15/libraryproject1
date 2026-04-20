@@ -1,0 +1,14 @@
+<h3>Task 2: Total Stock per Publisher</h3>
+<ul>
+    {% for pub in publishers %}
+    <li>
+        Publisher: <b>{{ pub.name }}</b> - Total Stock: {{ pub.total_stock|default:0 }}
+        <ul>
+            {% for book in pub.book_set.all %} <li>Book Title: {{ book.title }} (Qty: {{ book.quantity }})</li>
+            {% empty %}
+                <li style="color: gray;">No books available for this publisher.</li>
+            {% endfor %}
+        </ul>
+        <hr> </li>
+    {% endfor %}
+</ul>

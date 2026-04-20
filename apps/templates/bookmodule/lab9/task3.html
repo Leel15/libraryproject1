@@ -1,0 +1,20 @@
+<table border="1">
+    <tr>
+        <th>Publisher</th>
+        <th>Oldest Book Title</th>
+        <th>Publication Date</th>
+    </tr>
+    {% for pub in publishers %}
+    <tr>
+        <td>{{ pub.name }}</td>
+        <td>
+            {% for book in pub.book_set.all %}
+                {% if book.pubdate == pub.oldest_book_date %}
+                    {{ book.title }}
+                {% endif %}
+            {% endfor %}
+        </td>
+        <td>{{ pub.oldest_book_date|date:"Y-m-d"|default:"No Books" }}</td>
+    </tr>
+    {% endfor %}
+</table>
