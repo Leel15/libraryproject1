@@ -24,3 +24,10 @@ INSERT INTO bookmodule_publisher (id, name, location) VALUES
 INSERT INTO bookmodule_book_authors (book_id, author_id) VALUES 
 (1, 1), (2, 2), (3, 3), (4, 4), (5, 1), 
 (6, 4), (7, 2), (8, 1), (9, 1), (10, 3);
+
+INSERT INTO bookmodule_book1 (title, author, price, edition) VALUES 
+('Django for Beginners', 'William S. Vincent', 29.99, 4),
+('Two Scoops of Django', 'Audrey Feldroy', 45.00, 3),
+('Fluent Python', 'Luciano Ramalho', 55.20, 2),
+('Clean Code', 'Robert C. Martin', 32.15, 1),
+('The Pragmatic Programmer', 'Andrew Hunt', 40.00, 2);

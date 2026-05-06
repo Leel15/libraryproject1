@@ -1,0 +1,41 @@
+<style>
+    table { width: 80%; border-collapse: collapse; margin: 20px auto; font-family: Arial, sans-serif; }
+    th { background-color: #f2f2f2; padding: 12px; text-align: left; border-bottom: 2px solid #ddd; }
+    td { padding: 10px; border-bottom: 1px solid #ddd; }
+    tr:hover { background-color: #f5f5f5; }
+    .btn { padding: 5px 10px; text-decoration: none; border-radius: 4px; color: white; }
+    .btn-edit { background-color: #4CAF50; }
+    .btn-delete { background-color: #f44336; }
+    .btn-add { background-color: #008CBA; padding: 10px 20px; display: inline-block; margin: 10px; }
+</style>
+
+<div style="text-align: center;">
+    <h2>Books Management System</h2>
+    <a href="{% url 'add_book' %}" class="btn btn-add">+ Add New Book</a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Price</th>
+            <th>Edition</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>${{ book.price }}</td>
+            <td>Edition {{ book.edition }}</td>
+            <td>
+                <a href="{% url 'edit_book' book.id %}" class="btn btn-edit">Edit</a>
+                <a href="{% url 'delete_book' book.id %}" class="btn btn-delete" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

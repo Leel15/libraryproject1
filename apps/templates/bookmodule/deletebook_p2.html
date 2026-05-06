@@ -1,0 +1,21 @@
+<style>
+    .delete-container { 
+        width: 400px; margin: 100px auto; padding: 30px; 
+        border: 2px solid #e74c3c; border-radius: 10px; 
+        text-align: center; font-family: sans-serif;
+    }
+    .btn-confirm { background-color: #e74c3c; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+    .btn-cancel { background-color: #bdc3c7; color: #2c3e50; text-decoration: none; padding: 10px 20px; border-radius: 5px; display: inline-block; margin-left: 10px; }
+</style>
+
+<div class="delete-container">
+    <h2 style="color: #c0392b;">Confirm Delete</h2>
+    <p>Are you sure you want to delete the book:</p>
+    <p><strong>"{{ book.title }}"</strong>?</p>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn-confirm">Yes, Delete it</button>
+        <a href="{% url 'list_books_p2' %}" class="btn-cancel">No, Cancel</a>
+    </form>
+</div>
