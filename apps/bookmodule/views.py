@@ -1,7 +1,7 @@
 from django.shortcuts import render ,redirect  
 from django.db.models import Q,Avg, Max, Min, Sum, Count
-from .models import Book , Address , Publisher , Book1
-from .forms import BookForm
+from .models import Book , Address , Publisher , Book1 , Student,Student2,BookGallery
+from .forms import BookForm , StudentForm , Student2Form , BookGalleryForm
 
 
 def index(request): 
@@ -231,3 +231,71 @@ def delete_book_p2(request, id):
         return redirect('list_books_p2')
     
     return render(request, 'bookmodule/deletebook_p2.html', {'book': book})
+
+
+
+
+def student_list(request):
+    students = Student.objects.all()
+    return render(request, 'bookmodule/student_list.html', {'students': students})
+
+
+def manage_student(request, id=None):
+    if id: 
+        student = Student.objects.get(id=id)
+    else: 
+        student = None
+
+    if request.method == 'POST':
+        form = StudentForm(request.POST, instance=student)
+        if form.is_valid():
+            form.save() 
+            return redirect('student_list')
+    else:
+        form = StudentForm(instance=student)
+    
+    return render(request, 'bookmodule/manage_student.html', {'form': form})
+
+
+def delete_student(request, id):
+    Student.objects.get(id=id).delete()
+    return redirect('student_list')
+
+
+
+def student_list_p2(request):
+    students = Student2.objects.all()
+    return render(request, 'bookmodule/student_list_p2.html', {'students': students})
+
+def manage_student_p2(request, id=None):
+    student = Student2.objects.get(id=id) if id else None
+
+    if request.method == 'POST':
+        form = Student2Form(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return redirect('student_list_p2')
+    else:
+        form = Student2Form(instance=student)
+    
+    return render(request, 'bookmodule/manage_student_p2.html', {'form': form})
+
+def delete_student_p2(request, id):
+    student = Student2.objects.get(id=id)
+    student.delete()
+    return redirect('student_list_p2')
+
+
+def add_book_gallery(request):
+    if request.method == 'POST':
+        form = BookGalleryForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save() 
+            return redirect('book_gallery_list')
+    else:
+        form = BookGalleryForm()
+    return render(request, 'bookmodule/add_book_gallery.html', {'form': form})
+
+def book_gallery_list(request):
+    books = BookGallery.objects.all()
+    return render(request, 'bookmodule/book_gallery_list.html', {'books': books})

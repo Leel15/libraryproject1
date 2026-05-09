@@ -1,6 +1,5 @@
 from django import forms
-from .models import Book1  
-
+from .models import Book1 ,Address ,Student,Address2,Student2 ,BookGallery
 class BookForm(forms.ModelForm):
     title = forms.CharField(
         max_length=100,
@@ -44,3 +43,41 @@ class BookForm(forms.ModelForm):
     class Meta:
         model = Book1 
         fields = ['title', 'author', 'price', 'edition']
+
+
+class StudentForm(forms.ModelForm):
+    name = forms.CharField(label="Student Name", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    age = forms.IntegerField(label="Age", initial=18, widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    address = forms.ModelChoiceField(
+        queryset=Address.objects.all(),
+        empty_label="Select Address",
+        label="Student Address",
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    class Meta:
+        model = Student
+        fields = ['name', 'age', 'address'] 
+
+
+
+
+class Student2Form(forms.ModelForm):
+     
+    name = forms.CharField(label="Student Name", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    age = forms.IntegerField(label="Age", initial=18, widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    addresses = forms.ModelMultipleChoiceField(
+        queryset=Address2.objects.all(),
+        label="Select Addresses",
+        widget=forms.CheckboxSelectMultiple()
+    )
+
+    class Meta:
+        model = Student2
+        fields = ['name', 'age', 'addresses']
+
+
+
+class BookGalleryForm(forms.ModelForm):
+    class Meta:
+        model = BookGallery 
+        fields = ['title', 'picture'] 

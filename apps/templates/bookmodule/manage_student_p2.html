@@ -1,0 +1,14 @@
+<style>
+    .form-box { width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+    .form-control { width: 100%; padding: 8px; margin: 10px 0; display: block; }
+    .btn-save { width: 100%; padding: 10px; background: #007bff; color: white; border: none; cursor: pointer; }
+</style>
+
+<h3>Manage Student (Task 2)</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+<br>
+<a href="{% url 'student_list_p2' %}">Back to List</a>

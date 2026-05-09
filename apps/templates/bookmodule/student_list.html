@@ -1,0 +1,37 @@
+<style>
+    .container { width: 80%; margin: auto; font-family: Arial; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    th { background-color: #f4f4f4; }
+    .btn { padding: 5px 10px; text-decoration: none; border-radius: 3px; }
+    .btn-add { background: #28a745; color: white; display: inline-block; margin-bottom: 10px; }
+    .btn-edit { background: #ffc107; color: black; }
+    .btn-delete { background: #dc3545; color: white; }
+</style>
+
+<div class="container">
+    <h2>Student Management</h2>
+    <a href="{% url 'manage_student' %}" class="btn btn-add">Add New Student</a>
+    
+    <table border="1">
+    <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Age</th>
+            <th>Address (City)</th> <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in students %}
+        <tr>
+            <td>{{ s.name }}</td>
+            <td>{{ s.age }}</td>
+            <td>{{ s.address }}</td> <td>
+                <a href="{% url 'manage_student' s.id %}">Edit</a>
+                <a href="{% url 'delete_student' s.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>

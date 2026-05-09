@@ -1,0 +1,36 @@
+<style>
+    .container { width: 80%; margin: auto; font-family: Arial; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    th { background-color: #f4f4f4; }
+    .btn { padding: 5px 10px; text-decoration: none; border-radius: 3px; }
+    .btn-add { background: #28a745; color: white; display: inline-block; margin-bottom: 10px; }
+    .btn-edit { background: #ffc107; color: black; }
+    .btn-delete { background: #dc3545; color: white; }
+</style>
+
+<table border="1" style="width: 100%; text-align: center;">
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Addresses</th>
+        <th>Actions</th>
+    </tr>
+    {% for s in students %}
+    <tr>
+        <td>{{ s.name }}</td>
+        <td>{{ s.age }}</td>
+        <td>
+            {% for addr in s.addresses.all %}
+                {{ addr.city }}{% if not forloop.last %}, {% endif %}
+            {% empty %}
+                No Address
+            {% endfor %}
+        </td>
+        <td>
+            <a href="{% url 'manage_student_p2' s.id %}" style="color: blue;">Edit</a> | 
+            <a href="{% url 'delete_student_p2' s.id %}" style="color: red;" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,17 @@
+<style>
+    .form-box { width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+    .form-control { width: 100%; padding: 8px; margin: 10px 0; display: block; }
+    .btn-save { width: 100%; padding: 10px; background: #007bff; color: white; border: none; cursor: pointer; }
+</style>
+
+<div class="form-box">
+    <h3>{% if form.instance.id %} Update Student {% else %} Add Student {% endif %}</h3>
+    <form method="post">
+        {% csrf_token %} 
+        {{form}}
+        
+        <button type="submit" class="btn-save">Save Changes</button>
+    </form>
+    <br>
+    <a href="{% url 'student_list' %}">Cancel and Return</a>
+</div>

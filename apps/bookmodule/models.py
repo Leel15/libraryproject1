@@ -3,6 +3,9 @@ from django.db import models
 class Address(models.Model):
     city = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.city
+
 
 class Student(models.Model):
     name = models.CharField(max_length=100)
@@ -33,3 +36,24 @@ class Book1(models.Model):
     price = models.FloatField(default=0.0)
     edition = models.SmallIntegerField(default=1)
 
+
+class Address2(models.Model):
+    city = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.city
+
+class Student2(models.Model):
+    name = models.CharField(max_length=100)
+    age = models.IntegerField()
+    addresses = models.ManyToManyField(Address2)
+
+    def __str__(self):
+        return self.name
+    
+class BookGallery(models.Model):
+    title = models.CharField(max_length=100)
+    picture = models.ImageField(upload_to='books/gallery/') 
+
+    def __str__(self):
+        return self.title
