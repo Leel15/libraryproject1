@@ -81,3 +81,5 @@ class BookGalleryForm(forms.ModelForm):
     class Meta:
         model = BookGallery 
         fields = ['title', 'picture'] 
+
+

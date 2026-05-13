@@ -2,6 +2,7 @@ from django.shortcuts import render ,redirect
 from django.db.models import Q,Avg, Max, Min, Sum, Count
 from .models import Book , Address , Publisher , Book1 , Student,Student2,BookGallery
 from .forms import BookForm , StudentForm , Student2Form , BookGalleryForm
+from django.contrib.auth.decorators import login_required
 
 
 def index(request): 
@@ -50,10 +51,7 @@ def search(request):
                 newBooks.append(item)
 
         return render(request, 'bookmodule/bookList.html', {'books': newBooks})
-    
-    mybook = Book(title = 'Continuous Delivery', author = 'J.Humble and D. Farley', edition= 1)
-    mybook = Book.objects.create(title = 'Continuous Delivery', author = 'J.Humble and D.Farley', edition = 1)
-    mybook.save()
+
 
     return render(request, 'bookmodule/search.html')
 
@@ -160,10 +158,12 @@ def task6(request):
     )
     return render(request, 'bookmodule/lab9/task6.html', {'publishers': publishers})
 
+@login_required(login_url='login')
 def list_books(request):
     all_books = Book1.objects.all() 
     return render(request, 'bookmodule/listbooks.html', {'books': all_books})
 
+@login_required(login_url='login')
 def add_book(request):
     if request.method == 'POST':
         t = request.POST.get('title')
@@ -178,6 +178,7 @@ def add_book(request):
         
     return render(request, 'bookmodule/addbook.html')
 
+@login_required(login_url='login')
 def edit_book(request, id):
     book_obj = Book1.objects.get(id=id)
     
@@ -192,17 +193,19 @@ def edit_book(request, id):
     
     return render(request, 'bookmodule/addbook.html', {'book': book_obj})
 
+@login_required(login_url='login')
 def delete_book(request, id):
     book_obj = Book1.objects.get(id=id)
     book_obj.delete() 
     
     return redirect('list_books')
 
-
+@login_required(login_url='login')
 def list_books_p2(request):
     books = Book1.objects.all()
     return render(request, 'bookmodule/listbooks_p2.html', {'books': books})
 
+@login_required(login_url='login')
 def add_book_p2(request):
     if request.method == 'POST':
         form = BookForm(request.POST) 
@@ -213,6 +216,7 @@ def add_book_p2(request):
         form = BookForm() 
     return render(request, 'bookmodule/addbook_p2.html', {'form': form})
 
+@login_required(login_url='login')
 def edit_book_p2(request, id):
     book = Book1.objects.get(id=id)
     if request.method == 'POST':
@@ -224,6 +228,7 @@ def edit_book_p2(request, id):
         form = BookForm(instance=book) 
     return render(request, 'bookmodule/addbook_p2.html', {'form': form})
 
+@login_required(login_url='login')
 def delete_book_p2(request, id):
     book = Book1.objects.get(id=id)
     if request.method == 'POST':
@@ -234,12 +239,12 @@ def delete_book_p2(request, id):
 
 
 
-
+@login_required(login_url='login')
 def student_list(request):
     students = Student.objects.all()
     return render(request, 'bookmodule/student_list.html', {'students': students})
 
-
+@login_required(login_url='login')
 def manage_student(request, id=None):
     if id: 
         student = Student.objects.get(id=id)
@@ -256,17 +261,18 @@ def manage_student(request, id=None):
     
     return render(request, 'bookmodule/manage_student.html', {'form': form})
 
-
+@login_required(login_url='login')
 def delete_student(request, id):
     Student.objects.get(id=id).delete()
     return redirect('student_list')
 
 
-
+@login_required(login_url='login')
 def student_list_p2(request):
     students = Student2.objects.all()
     return render(request, 'bookmodule/student_list_p2.html', {'students': students})
 
+@login_required(login_url='login')
 def manage_student_p2(request, id=None):
     student = Student2.objects.get(id=id) if id else None
 
@@ -280,12 +286,14 @@ def manage_student_p2(request, id=None):
     
     return render(request, 'bookmodule/manage_student_p2.html', {'form': form})
 
+@login_required(login_url='login')
 def delete_student_p2(request, id):
     student = Student2.objects.get(id=id)
     student.delete()
     return redirect('student_list_p2')
 
 
+@login_required(login_url='login')
 def add_book_gallery(request):
     if request.method == 'POST':
         form = BookGalleryForm(request.POST, request.FILES)
@@ -296,6 +304,7 @@ def add_book_gallery(request):
         form = BookGalleryForm()
     return render(request, 'bookmodule/add_book_gallery.html', {'form': form})
 
+@login_required(login_url='login')
 def book_gallery_list(request):
     books = BookGallery.objects.all()
     return render(request, 'bookmodule/book_gallery_list.html', {'books': books})

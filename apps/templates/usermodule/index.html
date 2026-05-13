@@ -1,0 +1,11 @@
+{% extends 'usermodule/base.html' %}
+{% block content %}
+    <div style="text-align: center; margin-top: 50px;">
+        <h1>Welcome to Library Home Page</h1>
+        {% if user.is_authenticated %}
+            <p>You are logged in! Now you can access your labs.</p>
+        {% else %}
+            <p>Please Login or Register to continue.</p>
+        {% endif %}
+    </div>
+{% endblock %}
